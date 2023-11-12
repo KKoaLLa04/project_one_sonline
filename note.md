@@ -159,3 +159,20 @@
     create_at timestamp
     update_at timestamp
     }
+
+14. table exam_category{
+    id int
+    name varchar(100)
+    create_at timestamp
+    update_at timestamp
+    }
+
+15. table exam{
+    id int
+    title varchar(100)
+    description tinytext
+    content text
+    exam_id int
+    create_at timestamp
+    update_at timestamp
+    }

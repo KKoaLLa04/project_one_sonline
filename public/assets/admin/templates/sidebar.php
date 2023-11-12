@@ -2,8 +2,7 @@
  <aside class="main-sidebar sidebar-dark-primary elevation-4">
      <!-- Brand Logo -->
      <a href="index3.html" class="brand-link">
-         <img src="<?php echo _WEB_HOST_ADMIN_TEMPLATE ?>/images/AdminLTELogo.png" alt="AdminLTE Logo"
-             class="brand-image img-circle elevation-3" style="opacity: .8">
+         <img src="<?php echo _WEB_HOST_ADMIN_TEMPLATE ?>/images/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
          <span class="brand-text font-weight-light">SONLINE</span>
      </a>
 
@@ -12,8 +11,7 @@
          <!-- Sidebar user panel (optional) -->
          <div class="user-panel mt-3 pb-3 mb-3 d-flex">
              <div class="image">
-                 <img src="<?php echo _WEB_HOST_ADMIN_TEMPLATE ?>/images/user2-160x160.jpg"
-                     class="img-circle elevation-2" alt="User Image">
+                 <img src="<?php echo _WEB_HOST_ADMIN_TEMPLATE ?>/images/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
              </div>
              <div class="info">
                  <a href="#" class="d-block">Duy Kiên (SUPER ADMIN)</a>
@@ -22,15 +20,13 @@
 
          <!-- Sidebar Menu -->
          <nav class="mt-2">
-             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                 data-accordion="false">
+             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
                  <!-- 
                 Tổng quan - begin
                  -->
                  <li class="nav-item">
-                     <a href="<?php echo _WEB_HOST_ROOT_ADMIN ?>"
-                         class="nav-link <?php echo (activeMenuSidebar('')) || empty($_GET['module']) ? 'active' : false ?>">
+                     <a href="<?php echo _WEB_HOST_ROOT_ADMIN ?>" class="nav-link <?php echo (activeMenuSidebar('')) || empty($_GET['module']) ? 'active' : false ?>">
                          <i class="nav-icon fa fa-tachometer-alt"></i>
                          <p>
                              Tổng quan
@@ -76,10 +72,8 @@
                  <!-- 
                     subject_category - begin 
                 -->
-                 <li
-                     class="nav-item has-treeview <?php echo (activeMenuSidebar('subject_category')) ? 'menu-open' : false ?>">
-                     <a href="#"
-                         class="nav-link <?php echo (activeMenuSidebar('subject_category')) ? 'active' : false ?>">
+                 <li class="nav-item has-treeview <?php echo (activeMenuSidebar('subject_category')) ? 'menu-open' : false ?>">
+                     <a href="#" class="nav-link <?php echo (activeMenuSidebar('subject_category')) ? 'active' : false ?>">
                          <i class="nav-icon fa fa-bars"></i>
                          <p>
                              Danh mục khóa học
@@ -171,8 +165,7 @@
                  <!-- 
                     book_category - begin 
                 -->
-                 <li
-                     class="nav-item has-treeview <?php echo (activeMenuSidebar('book_category')) ? 'menu-open' : false ?>">
+                 <li class="nav-item has-treeview <?php echo (activeMenuSidebar('book_category')) ? 'menu-open' : false ?>">
                      <a href="#" class="nav-link <?php echo (activeMenuSidebar('book_category')) ? 'active' : false ?>">
                          <i class="nav-icon fa fa-book-open"></i>
                          <p>
@@ -299,8 +292,7 @@
                  <!-- 
                     news_category - begin 
                 -->
-                 <li
-                     class="nav-item has-treeview <?php echo (activeMenuSidebar('news_category')) ? 'menu-open' : false ?>">
+                 <li class="nav-item has-treeview <?php echo (activeMenuSidebar('news_category')) ? 'menu-open' : false ?>">
                      <a href="#" class="nav-link <?php echo (activeMenuSidebar('news_category')) ? 'active' : false ?>">
                          <i class="nav-icon fa fa-newspaper"></i>
                          <p>
@@ -418,6 +410,45 @@
 
                  <!-- 
                     contact -end 
+                -->
+
+                 <!-- 
+                    exam_category - begin 
+                -->
+                 <li class="nav-item has-treeview <?php echo (activeMenuSidebar('exam_category') || activeMenuSidebar('exam')) ? 'menu-open' : false ?>">
+                     <a href="#" class="nav-link <?php echo (activeMenuSidebar('exam_category') || activeMenuSidebar('exam')) ? 'active' : false ?>">
+                         <i class="nav-icon fa fa-scroll"></i>
+                         <p>
+                             Quản lý đề thi
+                             <i class="fas fa-angle-left right"></i>
+                         </p>
+                     </a>
+                     <ul class="nav nav-treeview">
+                         <li class="nav-item">
+                             <a href="?module=exam_category&action=lists" class="nav-link">
+                                 <i class="far fa-circle nav-icon"></i>
+                                 <p>Danh sách danh mục</p>
+                             </a>
+                         </li>
+
+                         <li class="nav-item">
+                             <a href="?module=exam&action=lists" class="nav-link">
+                                 <i class="far fa-circle nav-icon"></i>
+                                 <p>Danh sách đề thi</p>
+                             </a>
+                         </li>
+
+                         <li class="nav-item">
+                             <a href="?module=exam&action=add" class="nav-link">
+                                 <i class="far fa-circle nav-icon"></i>
+                                 <p>Thêm đề thi mới</p>
+                             </a>
+                         </li>
+                     </ul>
+                 </li>
+
+                 <!-- 
+                    exam_category -end 
                 -->
 
 

@@ -68,10 +68,8 @@
             <li><a href="?module=home&action=home"><i class="fa fa-home"></i>Trang Chủ</a></li>
             <li><a href="?module=course&action=lists"><i class="fa fa-file"></i>Khóa học</a></li>
             <li><a href="?module=book&action=lists"><i class="fa fa-book"></i>Sách</a></li>
-            <li><a href="?module=exam_online&action=lists"><i class="fa fa-file"></i>Thi online</a></li>
-            <li><a href="?module=exercise&action=lists"><i class="fa fa-copy"></i>Giải bài tập & soạn bài tập</a></li>
+            <li><a href="?module=exam_online&action=lists"><i class="fa fa-file"></i>Đề Thi</a></li>
             <li><a href="?module=document&action=lists"><i class="fa fa-folder"></i>Tài liệu miễn phí</a></li>
-            <li><a href="?module=ranking&action=lists"><i class="fa fa-university"></i>Xếp hạng</a></li>
             <li><a href="?module=news&action=lists"><i class="fa fa-newspaper"></i>Tin tức</a></li>
             <li><a href="?module=aboutus&action=introduce"><i class="fa fa-file-alt"></i>Giới thiệu</a></li>
             <li><a href="?module=contacts&action=contact"><i class="fa fa-envelope"></i>Liên hệ</a></li>
