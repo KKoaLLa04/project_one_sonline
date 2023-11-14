@@ -43,19 +43,16 @@
 
             <div class="col-3">
                 <?php if (empty($_SESSION["login"]) && empty($_SESSION['login_teacher'])) : ?>
-                <div class="header__button">
-                    <a href="?module=member&action=login"><button class="header__login">Đăng nhập</button></a>
-                    <a href="?module=member&action=register"><button class="header__register">Đăng ký</button></a>
-                </div>
+                    <div class="header__button">
+                        <a href="?module=member&action=login"><button class="header__login">Đăng nhập</button></a>
+                        <a href="?module=member&action=register"><button class="header__register">Đăng ký</button></a>
+                    </div>
                 <?php elseif (!empty($_SESSION['login_teacher'])) : ?>
-                <p class="d-flex justify-content-end"><a href="<?php echo _WEB_HOST_ROOT_ADMIN ?>" target="_blank"
-                        class="mx-3"><button class="btn btn-primary btn-sm">Trang quản trị</button></a> <a
-                        href="?module=member&action=logout"><button class="btn btn-warning btn-sm">Đăng
-                            xuất</button></a></p>
+                    <p class="d-flex justify-content-end"><a href="<?php echo _WEB_HOST_ROOT_ADMIN ?>" target="_blank" class="mx-3"><button class="btn btn-primary btn-sm">Trang quản trị</button></a> <a href="?module=member&action=logout"><button class="btn btn-warning btn-sm">Đăng
+                                xuất</button></a></p>
                 <?php else :  ?>
-                <p class="d-flex justify-content-end"><a href="?module=member&action=logout"><button
-                            class="btn btn-warning btn-sm">Đăng
-                            xuất</button></a></p>
+                    <p class="d-flex justify-content-end"><a href="?module=member&action=logout"><button class="btn btn-warning btn-sm">Đăng
+                                xuất</button></a></p>
                 <?php endif ?>
             </div>
         </div>
@@ -68,7 +65,8 @@
             <li><a href="?module=home&action=home"><i class="fa fa-home"></i>Trang Chủ</a></li>
             <li><a href="?module=course&action=lists"><i class="fa fa-file"></i>Khóa học</a></li>
             <li><a href="?module=book&action=lists"><i class="fa fa-book"></i>Sách</a></li>
-            <li><a href="?module=exam_online&action=lists"><i class="fa fa-file"></i>Đề Thi</a></li>
+            <li><a href="?module=exam&action=lists"><i class="fa fa-file"></i>Đề Thi</a></li>
+            <li><a href="?module=exam_online&action=lists"><i class="fa fa-file"></i>Thi online</a></li>
             <li><a href="?module=document&action=lists"><i class="fa fa-folder"></i>Tài liệu miễn phí</a></li>
             <li><a href="?module=news&action=lists"><i class="fa fa-newspaper"></i>Tin tức</a></li>
             <li><a href="?module=aboutus&action=introduce"><i class="fa fa-file-alt"></i>Giới thiệu</a></li>
