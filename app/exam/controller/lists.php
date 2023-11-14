@@ -3,6 +3,6 @@
 require_once './exam/model/exam.php';
 
 $data = [
-    'exam' => getAllExam(),
+    'exam_control' => getAllExam(),
 ];
 view($data);

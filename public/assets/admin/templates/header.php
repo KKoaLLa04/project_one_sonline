@@ -29,6 +29,11 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
     <link rel="stylesheet" href="<?php echo _WEB_HOST_ADMIN_TEMPLATE ?>/css/style.css?ver=<?php echo rand() ?>">
+
+    <script type="text/javascript" src="<?php echo _WEB_HOST_ADMIN_TEMPLATE ?>/ckeditor/ckeditor/ckeditor.js">
+    </script>
+    <script type="text/javascript" src="<?php echo _WEB_HOST_ADMIN_TEMPLATE ?>/ckfinder/ckfinder/ckfinder.js">
+    </script>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">

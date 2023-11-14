@@ -55,7 +55,6 @@ function update($table, $dataUpdate, $condition = '')
     } else {
         $sql = 'UPDATE `' . $table . '` SET ' . $updateStr;
     }
-    echo $sql;
     return query($sql, $dataUpdate);
 }
 

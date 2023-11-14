@@ -11,7 +11,7 @@ function loadLayout($path, $data = [])
     }
 }
 
-function view($data = [], $action = '')
+function view($data = [], $act = '')
 {
     $module = 'dashboard';
     $action = 'home';
@@ -21,6 +21,10 @@ function view($data = [], $action = '')
 
     if (!empty($_GET['action'])) {
         $action = $_GET['action'];
+    }
+
+    if (!empty($act)) {
+        $action = $act;
     }
 
     require_once './' . $module . '/views/' . $action . '.php';
@@ -318,4 +322,35 @@ function loadError($name = '404')
     $path = _WEB_PATH_ROOT . '/modules/error/' . $name . '.php';
     require_once $path;
     die();
+}
+
+// download tai lieu
+function download()
+{
+    if (!empty($_GET['file'])) {
+        $fileName = basename($_GET['file']);
+        $filePath = 'uploads/' . $fileName;
+
+        if (!empty($fileName) && file_exists($filePath)) {
+            // header("Cache-Control: public");
+            // header("Content-Description: File Transfer");
+            // header("Content-Disposition: attachment; filename=$fileName");
+            // header("Content-Type: application/zip");
+            // header("Content-Transfer-Emcoding: binary");
+
+            // Thiết lập các header cho việc truyền tải dữ liệu
+            header('Content-Description: File Transfer');
+            header('Content-Type: application/octet-stream');
+            header('Content-Disposition: attachment; filename="' . basename($fileName) . '"');
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            // header('Content-Length: ' . filesize($fileName));
+            readfile($filePath);
+
+            exit;
+        } else {
+            echo 'File này không tồn tại!';
+        }
+    }
 }

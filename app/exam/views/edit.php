@@ -3,11 +3,15 @@ $msg = getFlashData('msg');
 $msg_type = getFlashData('msg_type');
 $errors = getFlashData('errors');
 $old = getFlashData('old');
+$examDetail = getFlashData('exam_detail');
+if (empty($old) && !empty($examDetail)) {
+    $old = $examDetail;
+}
 ?>
 <div class="container-fluid">
     <a href="?module=exam&action=lists"><button class="btn btn-warning btn-sm">Quay lại</button></a>
     <hr>
-    <h4>Thêm đề thi mới</h4>
+    <h4>Cập nhật đề thi - <b><?php echo $examDetail['title'] ?></b></h4>
     <?php getMsg($msg, $msg_type) ?>
     <form action="" method="post" enctype="multipart/form-data">
         <div class="row">
@@ -53,13 +57,18 @@ $old = getFlashData('old');
 
             <div class="col-6">
                 <div class="form-group">
-                    <label for="">Ảnh đề thi</label>
+                    <label for="">Ảnh đề thi (Không chọn nếu không thay đổi)</label>
                     <input type="file" class="form-control" name="images">
                     <p class="error"><?php echo errorData('images', $errors) ?></p>
                 </div>
             </div>
+
+            <div class="col-6">
+                <label for="">Ảnh demo</label>
+                <img src="<?php echo _WEB_HOST_ROOT ?>/uploads/<?php echo $examDetail['images'] ?>" alt="" width="100%">
+            </div>
         </div>
 
-        <button class="btn btn-primary">Thêm mới</button>
+        <button class="btn btn-primary">Cập nhật</button>
     </form>
 </div>

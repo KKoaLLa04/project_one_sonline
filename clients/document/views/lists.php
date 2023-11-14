@@ -5,12 +5,11 @@
         <h4 class="text-left reset">ĐÁP ÁN ĐỀ THI ONLINE 10</h4>
         <ul>
             <li>
-                <a href="#">
-                    <p><i class="fa fa-file-alt"></i>Đáp án đề số 1 - Ngày thi 11/09/2020</p>
+                <a href="http://localhost/project_one_sonline/?module=document&action=lists&file=test.html">
+                    <p><i class=" fa fa-file-alt"></i>Đáp án đề số 1 - Ngày thi 11/09/2020</p>
                 </a>
                 <div>
                     <span>297 lượt tải</span>
-                    <a href="#">Xem trước </a>
                     <a href="#"><i class="fa fa-file-download"></i></a>
                 </div>
             </li>
@@ -20,7 +19,7 @@
                 </a>
                 <div>
                     <span>297 lượt tải</span>
-                    <a href="#">Xem trước </a>
+
                     <a href="#"><i class="fa fa-file-download"></i></a>
                 </div>
             </li>
@@ -30,7 +29,7 @@
                 </a>
                 <div>
                     <span>297 lượt tải</span>
-                    <a href="#">Xem trước </a>
+
                     <a href="#"><i class="fa fa-file-download"></i></a>
                 </div>
             </li>
@@ -40,7 +39,7 @@
                 </a>
                 <div>
                     <span>297 lượt tải</span>
-                    <a href="#">Xem trước </a>
+
                     <a href="#"><i class="fa fa-file-download"></i></a>
                 </div>
             </li>
@@ -50,7 +49,7 @@
                 </a>
                 <div>
                     <span>297 lượt tải</span>
-                    <a href="#">Xem trước </a>
+
                     <a href="#"><i class="fa fa-file-download"></i></a>
                 </div>
             </li>
@@ -69,7 +68,7 @@
                 </a>
                 <div>
                     <span>297 lượt tải</span>
-                    <a href="#">Xem trước </a>
+
                     <a href="#"><i class="fa fa-file-download"></i></a>
                 </div>
             </li>
@@ -79,7 +78,7 @@
                 </a>
                 <div>
                     <span>297 lượt tải</span>
-                    <a href="#">Xem trước </a>
+
                     <a href="#"><i class="fa fa-file-download"></i></a>
                 </div>
             </li>
@@ -89,7 +88,7 @@
                 </a>
                 <div>
                     <span>297 lượt tải</span>
-                    <a href="#">Xem trước </a>
+
                     <a href="#"><i class="fa fa-file-download"></i></a>
                 </div>
             </li>
@@ -99,7 +98,7 @@
                 </a>
                 <div>
                     <span>297 lượt tải</span>
-                    <a href="#">Xem trước </a>
+
                     <a href="#"><i class="fa fa-file-download"></i></a>
                 </div>
             </li>
@@ -109,7 +108,7 @@
                 </a>
                 <div>
                     <span>297 lượt tải</span>
-                    <a href="#">Xem trước </a>
+
                     <a href="#"><i class="fa fa-file-download"></i></a>
                 </div>
             </li>
@@ -128,7 +127,7 @@
                 </a>
                 <div>
                     <span>297 lượt tải</span>
-                    <a href="#">Xem trước </a>
+
                     <a href="#"><i class="fa fa-file-download"></i></a>
                 </div>
             </li>
@@ -138,7 +137,7 @@
                 </a>
                 <div>
                     <span>297 lượt tải</span>
-                    <a href="#">Xem trước </a>
+
                     <a href="#"><i class="fa fa-file-download"></i></a>
                 </div>
             </li>
@@ -148,7 +147,7 @@
                 </a>
                 <div>
                     <span>297 lượt tải</span>
-                    <a href="#">Xem trước </a>
+
                     <a href="#"><i class="fa fa-file-download"></i></a>
                 </div>
             </li>
@@ -158,7 +157,7 @@
                 </a>
                 <div>
                     <span>297 lượt tải</span>
-                    <a href="#">Xem trước </a>
+
                     <a href="#"><i class="fa fa-file-download"></i></a>
                 </div>
             </li>
@@ -168,7 +167,7 @@
                 </a>
                 <div>
                     <span>297 lượt tải</span>
-                    <a href="#">Xem trước </a>
+
                     <a href="#"><i class="fa fa-file-download"></i></a>
                 </div>
             </li>

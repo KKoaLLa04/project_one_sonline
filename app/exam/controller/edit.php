@@ -4,6 +4,24 @@ use CKSource\CKFinder\Filesystem\File\UploadedFile;
 
 require_once './exam/model/exam.php';
 
+if (!empty($_GET['id'])) {
+    $id = $_GET['id'];
+
+    $examDetail = getExamDetail($id);
+
+    if (!empty($examDetail)) {
+        setFlashData('exam_detail', $examDetail);
+    } else {
+        setFlashData('msg', 'Đề thi không tồn tại hoặc đã bị xóa!');
+        setFlashData('msg_type', 'danger');
+        redirect('?module=exam&action=lists');
+    }
+} else {
+    setFlashData('msg', 'Liên kết không tồn tại hoặc đã hết hạn!');
+    setFlashData('msg_type', 'danger');
+    redirect('?module=exam&action=lists');
+}
+
 if (isPost()) {
     $body = getBody();
 
@@ -22,10 +40,6 @@ if (isPost()) {
         $errors['content'] = 'Nội dung không được để trống';
     }
 
-    if (empty($_FILES['images']['name'])) {
-        $errors['images'] = 'Bắt buộc thêm ảnh minh họa đề thi';
-    }
-
     if (empty($errors)) {
 
         $images = $_FILES['images']['name'];
@@ -33,19 +47,24 @@ if (isPost()) {
         $to = _WEB_PATH_ROOT . '/uploads/' . $images;
         move_uploaded_file($from, $to);
 
-        $dataInsert = [
+        $dataUpdate = [
             'title' => trim($body['title']),
             'exam_id' => trim($body['exam_id']),
             'description' => trim($body['description']),
             'content' => trim($body['content']),
-            'images' => trim($images),
             'create_at' => trim($body['create_at'])
         ];
 
-        $insertStatus = insert('exam', $dataInsert);
+        if (!empty($_FILES['images']['name'])) {
+            $dataUpdate['images'] = trim($images);
+        }
 
-        if (!empty($insertStatus)) {
-            setFlashData('msg', 'Thêm đề thi mới thành công!');
+        $condition = 'id=' . $id;
+
+        $updateStatus = update('exam', $dataUpdate, $condition);
+
+        if (!empty($updateStatus)) {
+            setFlashData('msg', 'Cập nhật đề thi thành công!');
             setFlashData('msg_type', 'success');
         } else {
             setFlashData('msg', 'Lỗi hệ thống, vui lòng thử lại sau!');
@@ -58,7 +77,7 @@ if (isPost()) {
         setFlashData('old', $body);
     }
 
-    redirect('?module=exam&action=add');
+    redirect('?module=exam&action=edit&id=' . $id);
 }
 
 $data = [
