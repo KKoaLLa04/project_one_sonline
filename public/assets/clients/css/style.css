@@ -1,6 +1,7 @@
 html,body{
     width: 100%;
     margin: 0 auto;
+    box-sizing: border-box;
 }
 
 /* --------------------------------------------------GLOBAl---------------------------------------------------- */
@@ -442,4 +443,31 @@ footer{
     font-style: italic;
     font-size: 90%;
     text-align: left;
+}
+
+.background_white{
+    background-color: white;
+    border-radius: 20px;
+    padding: 10px 20px;
+}
+
+.background_aqua{
+    background-color: aquamarine;
+    border-radius: 20px;
+    padding: 10px 20px;
+}
+
+.test{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.test_contain{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.test__text{
+    display: flex;
+    justify-content: space-between;
 }

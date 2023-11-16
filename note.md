@@ -176,3 +176,20 @@
     create_at timestamp
     update_at timestamp
     }
+
+16. table test_category{
+    id int primary key
+    name varchar(100)
+    create_at timestamp
+    update_at timestamp
+    }
+
+17. table test{
+    id int primary key
+    title varchar(100)
+    question varchar(100)
+    answer tinyint
+    test_id int
+    create_at timestamp
+    update_at timestamp
+    }
