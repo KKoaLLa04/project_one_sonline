@@ -1,3 +1,9 @@
+<?php
+$msg = getFlashData('msg');
+$msg_type = getFlashData('msg_type');
+$errors = getFlashData('errors');
+$old = getFlashData('old');
+?>
 <p class="py-1">Trang chủ > Liên hệ</p>
 
 <div class="row">
@@ -45,10 +51,7 @@
 
     <div class="col-6">
         <h3 class="title__contact">VỊ TRÍ TRÊN BẢN ĐỒ</h3>
-        <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14898.919665731193!2d105.77032909999998!3d21.00346085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313453858bad025f%3A0xf423a56009e1ca10!2sHong%20Ngoc%20Hospital%20-%20Phuc%20Truong%20Minh!5e0!3m2!1sen!2s!4v1698915798984!5m2!1sen!2s"
-            width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14898.919665731193!2d105.77032909999998!3d21.00346085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313453858bad025f%3A0xf423a56009e1ca10!2sHong%20Ngoc%20Hospital%20-%20Phuc%20Truong%20Minh!5e0!3m2!1sen!2s!4v1698915798984!5m2!1sen!2s" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
 
     <div class="col-3 my-4">
@@ -58,33 +61,34 @@
     </div>
 
     <div class="col-9 my-4">
-        <form action="" method="post">
+        <?php getMsg($msg, $msg_type) ?>
+        <form action="" method="post" id="form-contact">
             <div class="row">
                 <div class="col-4">
-                    <input type="text" placeholder="Họ và tên*" class=" form-control">
-                    <p></p>
+                    <input type="text" placeholder="Họ và tên*" class=" form-control" name="fullname" value="<?php echo oldData('fullname', $old) ?>">
+                    <p class="error"><?php echo errorData('fullname', $errors) ?></p>
                 </div>
 
                 <div class="col-4">
-                    <input type="text" placeholder="Email của bạn..." class="form-control">
-                    <p></p>
+                    <input type="text" placeholder="Email của bạn*" class="form-control" name="email" value="<?php echo oldData('email', $old) ?>">
+                    <p class="error"><?php echo errorData('email', $errors) ?></p>
                 </div>
 
                 <div class="col-4">
-                    <input type="text" placeholder="Số điện thoại*" class="form-control">
-                    <p></p>
+                    <input type="text" placeholder="Số điện thoại*" class="form-control" name="phone" value="<?php echo oldData('phone', $old) ?>">
+                    <p class="error"><?php echo errorData('phone', $errors) ?></p>
                 </div>
 
                 <div class="col-12">
-                    <textarea name="" rows="5" class="form-control" placeholder="Nội dung thông điệp của bạn..."
-                        style="border: none;"></textarea>
+                    <textarea rows="5" class="form-control" placeholder="Nội dung thông điệp của bạn*" style="border: none;" name="content"><?php echo oldData('content', $old) ?></textarea>
+                    <p class="error"><?php echo errorData('content', $errors) ?></p>
                 </div>
 
                 <div class="contact__button my-3">
                     <p>* Thông tin bắt buộc</p>
                     <div>
-                        <a href="#" class="btn btn-danger">Gửi liên hệ</a>
-                        <a href="#" class="btn btn-secondary">Hủy bỏ</a>
+                        <button class="btn btn-danger" type="submit">Gửi liên hệ</button>
+                        <a href="?module=contacts&action=contact" class="btn btn-secondary">Hủy bỏ</a>
                     </div>
                 </div>
             </div>

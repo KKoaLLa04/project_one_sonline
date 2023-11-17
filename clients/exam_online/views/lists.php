@@ -14,7 +14,8 @@
     </div>
     <div class="background_white">
         <p>Bạn vui lòng mua thêm lượt làm bài để tham gia làm bài thi online này!</p>
-        <button class="btn btn-primary w-100">MUA BÀI THI NÀY</button>
+        <a href="?module=exam_online&action=start&id=7"><button class="btn btn-primary w-100">MUA BÀI THI
+                NÀY</button></a>
     </div>
 </div>
 

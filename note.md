@@ -188,8 +188,24 @@
     id int primary key
     title varchar(100)
     question varchar(100)
-    answer tinyint
+    choice varchar(100)
+    answer varchar(100)
     test_id int
     create_at timestamp
     update_at timestamp
     }
+
+18. table result{
+    id int primary key
+    student_id int
+    test_id
+    score int
+    create_at timestamp
+    update_at timestamp
+    }
+
+x = 0
+0 => 4 => 8
+1 => 5 => 9
+2 => 6 => 10
+3 => 7 => 11
