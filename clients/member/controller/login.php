@@ -15,7 +15,13 @@ if (isPost()) {
 
             if (password_verify($password, $password_hash)) {
                 setSession('login', $checkAccount);
-                redirect('index.php');
+
+                if (!empty($checkAccount['token'])) {
+                    setFlashData('msg', 'Tài khoản của bạn chưa được kích hoạt vui lòng vào email để kích hoạt tài khoản');
+                    setFlashData('msg_type', 'danger');
+                } else {
+                    redirect('index.php');
+                }
             } else {
                 setFlashData('msg', 'Mật khẩu sai, vui lòng thử lại!');
                 setFlashData('msg_type', 'danger');

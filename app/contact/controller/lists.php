@@ -12,7 +12,7 @@ if (!empty($_GET['page'])) {
 
 // thuat toan phan trang
 // 1. số bản ghi / 1 trang
-$perPage = 2;
+$perPage = 10;
 
 // 2. Lấy số bản ghi trong database
 $count = getCountContact();
@@ -31,7 +31,9 @@ $maxPage = ceil($count / $perPage);
 $offset = ($page - 1) * $perPage;
 
 $data = [
-    'contact' => getAllContact($offset),
+    'contact' => getAllContact($offset, $perPage),
+    'maxPage' => $maxPage,
+    'page' => $page,
 ];
 
 view($data);

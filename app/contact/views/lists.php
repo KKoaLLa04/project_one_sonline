@@ -8,7 +8,7 @@ $msg_type = getFlashData('msg_type');
     <?php getMsg($msg, $msg_type) ?>
     <table class="table table-bordered">
         <thead>
-            <tr>
+            <tr class="table-success">
                 <th>STT</th>
                 <th>Họ tên</th>
                 <th>Email</th>
@@ -42,11 +42,17 @@ $msg_type = getFlashData('msg_type');
 
     <nav aria-label="Page navigation example" class="d-flex justify-content-end">
         <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#">Trước</a></li>
-            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">Sau</a></li>
+            <?php if ($data['page'] > 1) : ?>
+                <li class="page-item"><a class="page-link" href="#">Trước</a></li>
+            <?php
+            endif;;
+            for ($i = 1; $i <= $data['maxPage']; $i++) : ?>
+                <li class="page-item <?php echo $data['page'] == $i ? 'active' : false ?>"><a class="page-link" href="?module=contact&action=lists&page=<?php echo $i ?>"><?php echo $i ?></a></li>
+            <?php endfor;
+            if ($data['page'] < $data['maxPage']) :
+            ?>
+                <li class="page-item"><a class="page-link" href="#">Sau</a></li>
+            <?php endif ?>
         </ul>
     </nav>
 </div>
