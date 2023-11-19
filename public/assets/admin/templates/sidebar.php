@@ -1,4 +1,12 @@
  <?php
+    if (empty(isLoginTeacher())) {
+        setFlashData('msg', 'Bạn không có quyền truy cập');
+        setFlashData('msg_type', 'danger');
+        redirect(_WEB_HOST_ROOT);
+    } else {
+        $loginInfo = isLoginTeacher();
+    }
+
     $permissionData = permissionData();
 
     // check book permission
@@ -69,7 +77,7 @@
  <!-- Main Sidebar Container -->
  <aside class="main-sidebar sidebar-dark-primary elevation-4">
      <!-- Brand Logo -->
-     <a href="index3.html" class="brand-link">
+     <a href="<?php echo _WEB_HOST_ROOT_ADMIN ?>" class="brand-link">
          <img src="<?php echo _WEB_HOST_ADMIN_TEMPLATE ?>/images/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
          <span class="brand-text font-weight-light">SONLINE</span>
      </a>
@@ -82,7 +90,8 @@
                  <img src="<?php echo _WEB_HOST_ADMIN_TEMPLATE ?>/images/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
              </div>
              <div class="info">
-                 <a href="#" class="d-block">Duy Kiên (SUPER ADMIN)</a>
+                 <a href="?module=profile&action=profile" class="d-block"><?php echo $loginInfo['fullname'] ?>
+                     (<?php echo $loginInfo['name'] ?>)</a>
              </div>
          </div>
 

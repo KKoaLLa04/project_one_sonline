@@ -42,17 +42,20 @@
             </div>
 
             <div class="col-3">
-                <?php if (empty($_SESSION["login"]) && empty($_SESSION['login_teacher'])) : ?>
-                    <div class="header__button">
-                        <a href="?module=member&action=login"><button class="header__login">Đăng nhập</button></a>
-                        <a href="?module=member&action=register"><button class="header__register">Đăng ký</button></a>
-                    </div>
-                <?php elseif (!empty($_SESSION['login_teacher'])) : ?>
-                    <p class="d-flex justify-content-end"><a href="<?php echo _WEB_HOST_ROOT_ADMIN ?>" target="_blank" class="mx-3"><button class="btn btn-primary btn-sm">Trang quản trị</button></a> <a href="?module=member&action=logout"><button class="btn btn-warning btn-sm">Đăng
-                                xuất</button></a></p>
+                <?php if (empty($_SESSION["loginStudent"]) && empty($_SESSION['loginTeacher'])) : ?>
+                <div class="header__button">
+                    <a href="?module=member&action=login"><button class="header__login">Đăng nhập</button></a>
+                    <a href="?module=member&action=register"><button class="header__register">Đăng ký</button></a>
+                </div>
+                <?php elseif (!empty($_SESSION['loginTeacher'])) : ?>
+                <p class="d-flex justify-content-end"><a href="<?php echo _WEB_HOST_ROOT_ADMIN ?>" target="_blank"
+                        class="mx-3"><button class="btn btn-primary btn-sm">Trang quản trị</button></a> <a
+                        href="?module=member&action=logout"><button class="btn btn-warning btn-sm">Đăng
+                            xuất</button></a></p>
                 <?php else :  ?>
-                    <p class="d-flex justify-content-end"><a href="?module=member&action=logout"><button class="btn btn-warning btn-sm">Đăng
-                                xuất</button></a></p>
+                <p class="d-flex justify-content-end"><a href="?module=member&action=logout"><button
+                            class="btn btn-warning btn-sm">Đăng
+                            xuất</button></a></p>
                 <?php endif ?>
             </div>
         </div>

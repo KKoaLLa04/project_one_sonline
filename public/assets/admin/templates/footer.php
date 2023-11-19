@@ -21,7 +21,7 @@
 <script src="<?php echo _WEB_HOST_ADMIN_TEMPLATE ?>/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
-$.widget.bridge('uibutton', $.ui.button)
+    $.widget.bridge('uibutton', $.ui.button)
 </script>
 <!-- Bootstrap 4 -->
 <script src="<?php echo _WEB_HOST_ADMIN_TEMPLATE ?>/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -38,8 +38,7 @@ $.widget.bridge('uibutton', $.ui.button)
 <script src="<?php echo _WEB_HOST_ADMIN_TEMPLATE ?>/plugins/moment/moment.min.js"></script>
 <script src="<?php echo _WEB_HOST_ADMIN_TEMPLATE ?>/plugins/daterangepicker/daterangepicker.js"></script>
 <!-- Tempusdominus Bootstrap 4 -->
-<script
-    src="<?php echo _WEB_HOST_ADMIN_TEMPLATE ?>/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js">
+<script src="<?php echo _WEB_HOST_ADMIN_TEMPLATE ?>/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js">
 </script>
 <!-- Summernote -->
 <script src="<?php echo _WEB_HOST_ADMIN_TEMPLATE ?>/plugins/summernote/summernote-bs4.min.js"></script>

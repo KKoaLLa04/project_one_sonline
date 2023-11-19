@@ -2,6 +2,21 @@
 
 require_once './staff/model/staff.php';
 
+if (!empty($_GET['id'])) {
+    $id = $_GET['id'];
+
+    $staffDetail = getStaffDetail($id);
+    if (empty($staffDetail)) {
+        setFlashData('msg', 'Cộng tác viên không tồn tại hoặc đã bị xóa');
+        setFlashData('msg_type', 'danger');
+        redirect('?module=staff&action=lists');
+    }
+} else {
+    setFlashData('msg', 'Liên kết không tồn tại hoặc đã hết hạn!');
+    setFlashData('msg_type', 'danger');
+    redirect('?module=staff&action=lists');
+}
+
 if (isPost()) {
     $body = getBody();
 
@@ -22,8 +37,8 @@ if (isPost()) {
             $errors['email'] = 'Email không đúng định dạng';
         } else {
             $email = trim($body['email']);
-            $checkEmail = checkEmailExist($email);
-            if (!empty($checkEmail)) {
+            $checkEmail = checkEMailUpdate($email);
+            if ($checkEmail > 1) {
                 $errors['email'] = 'Email đã tồn tại!';
             }
         }
@@ -37,38 +52,41 @@ if (isPost()) {
         }
     }
 
-    if (empty($body['password'])) {
-        $errors['password'] = 'Mật khẩu không được để trống';
-    }
-
-    if (empty($body['confirm_password'])) {
-        $errors['confirm_password'] = 'Xác nhận mật khẩu không được để trống';
-    } else {
-        if (trim($body['password']) !== trim($body['confirm_password'])) {
-            $errors['confirm_password'] = 'Xác nhận mật khẩu không trùng khớp';
-        }
-    }
-
     if (empty($body['group_id'])) {
         $errors['group_id'] = 'Vui lòng phân quyền cho cộng tác viên!';
     }
 
     if (empty($errors)) {
 
-        $dataInsert = [
-            'fullname' => trim($body['fullname']),
-            'phone' => trim($body['phone']),
-            'email' => trim($body['email']),
-            'exp' => trim($body['exp']),
-            'password' => password_hash(trim($body['password']), PASSWORD_DEFAULT),
-            'group_id' => trim($body['group_id']),
-            'create_at' => date('Y-m-d H:i:s')
-        ];
+        if (empty(trim($body['password']))) {
+            $dataUpdate = [
+                'fullname' => trim($body['fullname']),
+                'phone' => trim($body['phone']),
+                'email' => trim($body['email']),
+                'exp' => trim($body['exp']),
+                'group_id' => trim($body['group_id']),
+                'status' => trim($body['status']),
+                'update_at' => date('Y-m-d H:i:s')
+            ];
+        } else {
+            $dataUpdate = [
+                'fullname' => trim($body['fullname']),
+                'phone' => trim($body['phone']),
+                'email' => trim($body['email']),
+                'exp' => trim($body['exp']),
+                'password' => password_hash(trim($body['password']), PASSWORD_DEFAULT),
+                'group_id' => trim($body['group_id']),
+                'status' => trim($body['status']),
+                'update_at' => date('Y-m-d H:i:s')
+            ];
+        }
 
-        $insertStatus = insert('teacher', $dataInsert);
+        $condition = "id=$id";
 
-        if (!empty($insertStatus)) {
-            setFlashData('msg', 'Thêm cộng tác viên mới thành công');
+        $updateStatus = update('teacher', $dataUpdate, $condition);
+
+        if (!empty($updateStatus)) {
+            setFlashData('msg', 'Cập nhật cộng tác viên thành công');
             setFlashData('msg_type', 'success');
         } else {
             setFlashData('msg', 'Lỗi hệ thống, vui lòng thử lại sau');
@@ -81,11 +99,12 @@ if (isPost()) {
         setFlashData('old', $body);
     }
 
-    redirect('?module=staff&action=lists');
+    redirect('?module=staff&action=edit&id=' . $id);
 }
 
 
 $data = [
-    'groups' => getAllGroups()
+    'groups' => getAllGroups(),
+    'staff' => $staffDetail,
 ];
 view($data);

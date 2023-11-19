@@ -2,6 +2,10 @@
 
 require_once './clients/member/model/member.php';
 
+if (isLoginStudent() || isLoginTeacher()) {
+    redirect('index.php');
+}
+
 if (isPost()) {
     $body = getBody();
 
@@ -14,12 +18,11 @@ if (isPost()) {
             $password_hash = $checkAccount['password'];
 
             if (password_verify($password, $password_hash)) {
-                setSession('login', $checkAccount);
-
                 if (!empty($checkAccount['token'])) {
                     setFlashData('msg', 'Tài khoản của bạn chưa được kích hoạt vui lòng vào email để kích hoạt tài khoản');
                     setFlashData('msg_type', 'danger');
                 } else {
+                    setSession('loginStudent', $checkAccount);
                     redirect('index.php');
                 }
             } else {

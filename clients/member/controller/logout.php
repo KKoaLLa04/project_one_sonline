@@ -1,5 +1,5 @@
 <?php
 
-removeSession('login');
-removeSession('login_teacher');
+removeSession('loginStudent');
+removeSession('loginTeacher');
 redirect('index.php');

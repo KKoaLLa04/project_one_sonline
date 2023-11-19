@@ -1,6 +1,7 @@
 <?php
 
 require_once './clients/course/model/course.php';
+
 if (!empty($_GET['course_id'])) {
     $id = $_GET['course_id'];
     $course_detail = getCourseDetail($id);

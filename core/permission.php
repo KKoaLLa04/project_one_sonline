@@ -17,20 +17,27 @@ function checkPermission($permissionData, $module, $role = 'Xem')
     return false;
 }
 
-function getGroupId($id = 1)
+function getCurrentLogin($id = null)
 {
-    $sql = "SELECT * FROM teacher WHERE id = $id";
+    if (empty($id)) {
+        if (!empty($_SESSION['loginTeacher'])) {
+            $id = $_SESSION['loginTeacher']['id'];
+        }
+    }
+    $sql = "SELECT * FROM teacher INNER JOIN groups ON groups.id=teacher.group_id WHERE teacher.id = $id";
     $data = firstRaw($sql);
     return $data;
 }
 
-function permissionData($groupId = 1)
+function permissionData()
 {
-    $sql = "SELECT * FROM groups WHERE id=$groupId";
+    $teacher = getCurrentLogin();
+
+    $group_id = $teacher['group_id'];
+
+    $sql = "SELECT * FROM groups WHERE id=$group_id";
     $data = firstRaw($sql);
 
-    $teacher = getGroupId(1);
-    $groupId = $teacher['group_id'];
     $permissionJson = $data['permission'];
     $permissionArr = json_decode($permissionJson, true);
     return $permissionArr;

@@ -1,8 +1,12 @@
 <?php
 
-require_once './staff/model/staff.php';
+require_once 'profile/model/profile.php';
 
 if (isPost()) {
+    if (!empty($_SESSION['loginTeacher'])) {
+        $id = $_SESSION['loginTeacher']['id'];
+    }
+
     $body = getBody();
 
     $errors = [];
@@ -22,8 +26,8 @@ if (isPost()) {
             $errors['email'] = 'Email không đúng định dạng';
         } else {
             $email = trim($body['email']);
-            $checkEmail = checkEmailExist($email);
-            if (!empty($checkEmail)) {
+            $checkEmail = checkEmailUpdate($email, $id);
+            if ($checkEmail > 1) {
                 $errors['email'] = 'Email đã tồn tại!';
             }
         }
@@ -37,39 +41,21 @@ if (isPost()) {
         }
     }
 
-    if (empty($body['password'])) {
-        $errors['password'] = 'Mật khẩu không được để trống';
-    }
-
-    if (empty($body['confirm_password'])) {
-        $errors['confirm_password'] = 'Xác nhận mật khẩu không được để trống';
-    } else {
-        if (trim($body['password']) !== trim($body['confirm_password'])) {
-            $errors['confirm_password'] = 'Xác nhận mật khẩu không trùng khớp';
-        }
-    }
-
-    if (empty($body['group_id'])) {
-        $errors['group_id'] = 'Vui lòng phân quyền cho cộng tác viên!';
-    }
-
     if (empty($errors)) {
 
-        $dataInsert = [
+        $dataUpdate = [
             'fullname' => trim($body['fullname']),
             'phone' => trim($body['phone']),
             'email' => trim($body['email']),
-            'exp' => trim($body['exp']),
-            'password' => password_hash(trim($body['password']), PASSWORD_DEFAULT),
-            'group_id' => trim($body['group_id']),
-            'status' => 1,
-            'create_at' => date('Y-m-d H:i:s')
+            'update_at' => date('Y-m-d H:i:s')
         ];
 
-        $insertStatus = insert('teacher', $dataInsert);
+        $condition = "id=$id";
 
-        if (!empty($insertStatus)) {
-            setFlashData('msg', 'Thêm cộng tác viên mới thành công');
+        $updateStatus = update('teacher', $dataUpdate, $condition);
+
+        if (!empty($updateStatus)) {
+            setFlashData('msg', 'Cập nhật thông tin thành công');
             setFlashData('msg_type', 'success');
         } else {
             setFlashData('msg', 'Lỗi hệ thống, vui lòng thử lại sau');
@@ -82,11 +68,11 @@ if (isPost()) {
         setFlashData('old', $body);
     }
 
-    redirect('?module=staff&action=lists');
+    redirect('?module=profile&action=profile');
 }
 
-
 $data = [
-    'groups' => getAllGroups()
+    'profile' => getProfile(),
 ];
+
 view($data);

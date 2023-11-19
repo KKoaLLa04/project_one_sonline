@@ -1,3 +1,12 @@
+<?php
+if (empty(isLoginTeacher())) {
+    setFlashData('msg', 'Bạn không có quyền truy cập');
+    setFlashData('msg_type', 'danger');
+    redirect(_WEB_HOST_ROOT);
+} else {
+    $loginInfo = isLoginTeacher();
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -12,15 +21,18 @@
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Tempusdominus Bbootstrap 4 -->
-    <link rel="stylesheet" href="<?php echo _WEB_HOST_ADMIN_TEMPLATE ?>/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <link rel="stylesheet"
+        href="<?php echo _WEB_HOST_ADMIN_TEMPLATE ?>/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
     <!-- iCheck -->
-    <link rel="stylesheet" href="<?php echo _WEB_HOST_ADMIN_TEMPLATE ?>/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <link rel="stylesheet"
+        href="<?php echo _WEB_HOST_ADMIN_TEMPLATE ?>/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- JQVMap -->
     <link rel="stylesheet" href="<?php echo _WEB_HOST_ADMIN_TEMPLATE ?>/plugins/jqvmap/jqvmap.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="<?php echo _WEB_HOST_ADMIN_TEMPLATE ?>/css/adminlte.min.css">
     <!-- overlayScrollbars -->
-    <link rel="stylesheet" href="<?php echo _WEB_HOST_ADMIN_TEMPLATE ?>/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <link rel="stylesheet"
+        href="<?php echo _WEB_HOST_ADMIN_TEMPLATE ?>/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Daterange picker -->
     <link rel="stylesheet" href="<?php echo _WEB_HOST_ADMIN_TEMPLATE ?>/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
@@ -45,30 +57,35 @@
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
                 <!-- Notifications Dropdown Menu -->
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo _WEB_HOST_ROOT ?>">
+                        Trang chủ <i class="fa fa-home"></i>
+                    </a>
+                </li>
+
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
-                        <i class="far fa-bell"></i>
-                        <span class="badge badge-warning navbar-badge">15</span>
+                        hi, xin chào duy kiên <i class="fa fa-user"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <span class="dropdown-item dropdown-header">15 Notifications</span>
+                        <span class="dropdown-item dropdown-header">Hệ thống quản trị</span>
                         <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-envelope mr-2"></i> 4 new messages
-                            <span class="float-right text-muted text-sm">3 mins</span>
+                        <a href="?module=profile&action=profile" class="dropdown-item">
+                            <i class="fa fa-file mr-2"></i> Thông tin cá nhân
+                            <!-- <span class="float-right text-muted text-sm">3 mins</span> -->
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-users mr-2"></i> 8 friend requests
-                            <span class="float-right text-muted text-sm">12 hours</span>
+                        <a href="?module=profile&action=change_password" class="dropdown-item">
+                            <i class="fa fa-lock mr-2"></i> Đổi mật khẩu
+                            <!-- <span class="float-right text-muted text-sm">12 hours</span> -->
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-file mr-2"></i> 3 new reports
-                            <span class="float-right text-muted text-sm">2 days</span>
+                        <a href="?module=profile&action=logout" class="dropdown-item">
+                            <i class="fa fa-sign-out-alt mr-2"></i> Đăng xuất
+                            <!-- <span class="float-right text-muted text-sm">2 days</span> -->
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                        <a href="#" class="dropdown-item dropdown-footer">SONLINE</a>
                     </div>
                 </li>
             </ul>

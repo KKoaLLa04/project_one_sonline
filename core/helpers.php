@@ -246,54 +246,80 @@ function errorData($fieldName, $errorArr)
     return !empty($errorArr[$fieldName]) ? $errorArr[$fieldName] : false;
 }
 
-function isLogin()
+function isLoginStudent()
 {
     $checkLogin = false;
-    if (!empty(getSession('loginToken'))) {
-        $loginToken = getSession('loginToken');
-        $tokenQuery = firstRaw("SELECT user_id FROM login_token WHERE token='$loginToken'");
+    if (!empty(getSession('loginStudent'))) {
+        $loginStudent = getSession('loginStudent');
+        $studentId = $loginStudent['id'];
+        $tokenQuery = firstRaw("SELECT * FROM student WHERE id=$studentId");
         if (!empty($tokenQuery)) {
             $checkLogin = $tokenQuery;
         } else {
-            removeSession('loginToken');
+            removeSession('loginStudent');
         }
     } else {
-        removeSession('loginToken');
+        removeSession('loginStudent');
+    }
+
+    return $checkLogin;
+}
+
+function isLoginTeacher()
+{
+    $checkLogin = false;
+    if (!empty(getSession('loginTeacher'))) {
+        $loginTeacher = getSession('loginTeacher');
+        $teacherId = $loginTeacher['id'];
+        $tokenQuery = firstRaw("SELECT teacher.*, name FROM teacher INNER JOIN groups ON groups.id=teacher.group_id WHERE teacher.id=$teacherId");
+        if (!empty($tokenQuery)) {
+            $checkLogin = $tokenQuery;
+        } else {
+            removeSession('loginTeacher');
+        }
+    } else {
+        removeSession('loginTeacher');
     }
 
     return $checkLogin;
 }
 
 
-function autoRemoveTokenLogin()
-{
-    $allUserNum = getRaw("SELECT * FROM users WHERE status = 1");
+// function autoRemoveTokenLogin()
+// {
+//     $allUserNum = getRaw("SELECT * FROM users WHERE status = 1");
 
-    if (!empty($allUserNum)) {
-        foreach ($allUserNum as $user) {
-            $now = date('Y-m-d H:i:s');
-            $beforeTime = $user['last_activity'];
-            $diff = strtotime($now) - strtotime($beforeTime) . '<br/>';
-            $diff = intval($diff);
-            $diff = ($diff / 60);
-            if ($diff > 1) {
-                delete('login_token', 'user_id=' . $user['id']);
-            }
-        }
-    }
-}
+//     if (!empty($allUserNum)) {
+//         foreach ($allUserNum as $user) {
+//             $now = date('Y-m-d H:i:s');
+//             $beforeTime = $user['last_activity'];
+//             $diff = strtotime($now) - strtotime($beforeTime) . '<br/>';
+//             $diff = intval($diff);
+//             $diff = ($diff / 60);
+//             if ($diff > 1) {
+//                 delete('login_token', 'user_id=' . $user['id']);
+//             }
+//         }
+//     }
+// }
 
-function saveActivity()
-{
-    $user_id = isLogin()['user_id'];
-    update('users', ['last_activity' => date('Y-m-d H:i:s')], 'id=' . $user_id);
-}
+// function saveActivity()
+// {
+//     $user_id = isLogin()['user_id'];
+//     update('users', ['last_activity' => date('Y-m-d H:i:s')], 'id=' . $user_id);
+// }
 
-function getUserInfor($user_id)
-{
-    $userInfor = firstRaw("SELECT * FROM users WHERE id=$user_id");
-    return $userInfor;
-}
+// function getUserInfor($user_id)
+// {
+//     $userInfor = firstRaw("SELECT * FROM users WHERE id=$user_id");
+//     return $userInfor;
+// }
+
+// function getStudentInfo($student_id)
+// {
+//     $studentInfo = firstRaw("SELECT * FROM student WHERE id=$student_id");
+//     return $studentInfo;
+// }
 
 function activeMenuSidebar($module)
 {
