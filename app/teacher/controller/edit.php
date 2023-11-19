@@ -2,6 +2,12 @@
 
 require_once './teacher/model/teacher.php';
 
+if (!checkPermission($permissionData, 'teacher', 'Sửa')) {
+    setFlashData('msg', 'Bạn không có quyền truy cập vào trang này');
+    setFlashData('msg_type', 'danger');
+    redirect(_WEB_HOST_ROOT_ADMIN);
+}
+
 if (!empty($_GET['id'])) {
     $id = $_GET['id'];
     $teacherDetail = teacherDetail($id);

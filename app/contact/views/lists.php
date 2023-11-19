@@ -1,6 +1,11 @@
 <?php
 $msg = getFlashData('msg');
 $msg_type = getFlashData('msg_type');
+
+$permissionData = permissionData();
+
+$checkEdit = checkPermission($permissionData, 'contact', 'Sửa');
+$checkDelete = checkPermission($permissionData, 'contact', 'Xóa');
 ?>
 <div class="container-fluid">
     <hr>
@@ -15,8 +20,12 @@ $msg_type = getFlashData('msg_type');
                 <th>Số điện thoại</th>
                 <th>Nội dung</th>
                 <th width="10%">Trạng thái</th>
-                <th width="5%">Sửa</th>
-                <th width="5%">Xóa</th>
+                <?php if ($checkEdit) : ?>
+                    <th width="5%">Sửa</th>
+                <?php endif;
+                if ($checkDelete) : ?>
+                    <th width="5%">Xóa</th>
+                <?php endif ?>
             </tr>
         </thead>
 
@@ -32,8 +41,12 @@ $msg_type = getFlashData('msg_type');
                         <td class="text-center">
                             <?php echo ($item['status'] == 0) ? '<a href="?module=contact&action=status&id=' . $item['id'] . '"><button class="btn btn-warning">Chưa duyệt</button></a>' : '<a href="?module=contact&action=status&id=' . $item['id'] . '"><button class="btn btn-success">Đã duyệt</button></a>' ?>
                         </td>
-                        <td><a href="?module=contact&action=edit&id=<?php echo $item['id'] ?>"><button class="btn btn-warning"><i class="fa fa-edit"></i></button></a></td>
-                        <td><button class="btn btn-danger"><i class="fa fa-trash"></i></button></td>
+                        <?php if ($checkEdit) : ?>
+                            <td><a href="?module=contact&action=edit&id=<?php echo $item['id'] ?>"><button class="btn btn-warning"><i class="fa fa-edit"></i></button></a></td>
+                        <?php endif;
+                        if ($checkDelete) : ?>
+                            <td><button class="btn btn-danger"><i class="fa fa-trash"></i></button></td>
+                        <?php endif ?>
                     </tr>
             <?php endforeach;
             endif ?>

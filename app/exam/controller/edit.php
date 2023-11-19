@@ -4,6 +4,14 @@ use CKSource\CKFinder\Filesystem\File\UploadedFile;
 
 require_once './exam/model/exam.php';
 
+$permissionData = permissionData();
+
+if (!checkPermission($permissionData, 'exam', 'Sửa')) {
+    setFlashData('msg', 'Bạn không có quyền truy cập vào trang này');
+    setFlashData('msg_type', 'danger');
+    redirect(_WEB_HOST_ROOT_ADMIN);
+}
+
 if (!empty($_GET['id'])) {
     $id = $_GET['id'];
 

@@ -3,16 +3,17 @@
 function checkPermission($permissionData, $module, $role = 'Xem')
 {
     if (!empty($permissionData)) {
-        $moduleDetail = $permissionData[$module];
+        if (!empty($permissionData[$module])) {
+            $moduleDetail = $permissionData[$module];
 
-        foreach ($moduleDetail as $item) {
-            if ($role == $item) {
-                return true;
+            foreach ($moduleDetail as $item) {
+                if ($role == $item) {
+                    return true;
+                }
             }
         }
     }
-    setFlashData('msg', 'Bạn không có quyền truy cập vào trang này');
-    setFlashData('msg_type', 'danger');
+
     return false;
 }
 
