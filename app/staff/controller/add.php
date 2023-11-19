@@ -1,11 +1,7 @@
 <?php
 
-require_once './teacher/model/teacher.php';
-if (!checkPermission($permissionData, 'teacher', 'Thêm')) {
-    setFlashData('msg', 'Bạn không có quyền truy cập vào trang này');
-    setFlashData('msg_type', 'danger');
-    redirect(_WEB_HOST_ROOT_ADMIN);
-}
+require_once './staff/model/staff.php';
+
 if (isPost()) {
     $body = getBody();
 
@@ -53,6 +49,10 @@ if (isPost()) {
         }
     }
 
+    if (empty($body['group_id'])) {
+        $errors['group_id'] = 'Vui lòng phân quyền cho cộng tác viên!';
+    }
+
     if (empty($errors)) {
 
         $dataInsert = [
@@ -61,14 +61,14 @@ if (isPost()) {
             'email' => trim($body['email']),
             'exp' => trim($body['exp']),
             'password' => password_hash(trim($body['password']), PASSWORD_DEFAULT),
-            'group_id' => 3,
+            'group_id' => trim($body['group_id']),
             'create_at' => date('Y-m-d H:i:s')
         ];
 
         $insertStatus = insert('teacher', $dataInsert);
 
         if (!empty($insertStatus)) {
-            setFlashData('msg', 'Thêm giảng viên mới thành công');
+            setFlashData('msg', 'Thêm cộng tác viên mới thành công');
             setFlashData('msg_type', 'success');
         } else {
             setFlashData('msg', 'Lỗi hệ thống, vui lòng thử lại sau');
@@ -81,7 +81,11 @@ if (isPost()) {
         setFlashData('old', $body);
     }
 
-    redirect('?module=teacher&action=add');
+    redirect('?module=staff&action=lists');
 }
 
-view();
+
+$data = [
+    'groups' => getAllGroups()
+];
+view($data);

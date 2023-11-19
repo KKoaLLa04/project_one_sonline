@@ -2,7 +2,7 @@
 
 function getAllGroups()
 {
-    $sql = "SELECT * FROM groups ORDER BY id DESC";
+    $sql = "SELECT * FROM groups WHERE name <> 'Super Admin'";
     $data = getRaw($sql);
     return $data;
 }
@@ -16,7 +16,7 @@ function getGroupDetail($id)
 
 function getAllBlocks()
 {
-    $sql = "SELECT * FROM blocks";
+    $sql = "SELECT * FROM blocks WHERE name <> 'groups'";
     $data = getRaw($sql);
     return $data;
 }
