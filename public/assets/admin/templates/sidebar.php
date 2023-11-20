@@ -717,6 +717,7 @@
                 -->
                  <?php endif ?>
 
+                 <?php if ($checkGroup) : ?>
                  <!-- 
                     options - begin 
                 -->
@@ -762,6 +763,7 @@
                  <!-- 
                     options -end 
                 -->
+                 <?php endif ?>
              </ul>
          </nav>
          <!-- /.sidebar-menu -->
