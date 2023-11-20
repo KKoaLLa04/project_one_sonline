@@ -744,6 +744,13 @@
                          </li>
 
                          <li class="nav-item">
+                             <a href="?module=options&action=introduce" class="nav-link">
+                                 <i class="far fa-circle nav-icon"></i>
+                                 <p>Thiết lập giới thiệu</p>
+                             </a>
+                         </li>
+
+                         <li class="nav-item">
                              <a href="?module=options&action=footer" class="nav-link">
                                  <i class="far fa-circle nav-icon"></i>
                                  <p>Thiết lập Footer</p>

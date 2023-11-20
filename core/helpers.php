@@ -332,6 +332,17 @@ function activeMenuSidebar($module)
     return false;
 }
 
+function activeAction($action)
+{
+    if (!empty(getBody()['action'])) {
+        if (getBody()['action'] == $action) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 // getLinkAdmin
 function getDateFormat($date, $format)
 {

@@ -2,24 +2,7 @@
 
 <div class="row">
     <div class="col-3 introduce">
-        <h5><b>VỀ CHÚNG TÔI</b></h5>
-        <ul class="my-4">
-            <li class="active__introduce"><a href="#" class="color__white"><i class="fa fa-angle-right"></i> Giới
-                    thiệu</a></li>
-            <li><a href="#"><i class="fa fa-angle-right"></i> Giảng viên nổi tiếng</a></li>
-            <li><a href="#"><i class="fa fa-angle-right"></i> Học viên xuất sắc</a></li>
-            <li><a href="#"><i class="fa fa-angle-right"></i> Chính sách khuyến học</a></li>
-            <li><a href="#"><i class="fa fa-angle-right"></i> Liên hệ hợp tác</a></li>
-        </ul>
-
-        <h5><b>CHÍNH SÁCH</b></h5>
-        <ul class="my-4">
-            <li><a href="#"><i class="fa fa-angle-right"></i> Chính sách và quy định chung</a></li>
-            <li><a href="#"><i class="fa fa-angle-right"></i> Chính sách bảo mật</a></li>
-            <li><a href="#"><i class="fa fa-angle-right"></i> Vận chuyển và thanh toán</a></li>
-            <li><a href="#"><i class="fa fa-angle-right"></i> Chính sách đổi trả</a></li>
-            <li><a href="#"><i class="fa fa-angle-right"></i> Hướng dẫn đặt hàng</a></li>
-        </ul>
+        <?php require _WEB_PATH_ROOT . '/clients/aboutus/views/layout.php' ?>
     </div>
     <div class="col-9">
         <p><b>Công ty TNHH Mode Vision</b></p>
