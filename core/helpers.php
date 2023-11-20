@@ -380,3 +380,18 @@ function download()
         }
     }
 }
+
+function getOption($key, $type = '')
+{
+    $sql = "SELECT * FROM options WHERE opt_key='$key'";
+    $options = firstRaw($sql);
+    if (!empty($options)) {
+        if ($type == 'label') {
+            return $options['name'];
+        }
+
+        return $options['opt_value'];
+    }
+
+    return false;
+}
