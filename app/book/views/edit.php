@@ -12,19 +12,13 @@ if (empty($old) && !empty($data['book_detail'])) {
     <hr>
     <h4>Cập nhật đầu sách: <?php echo !empty($old['name']) ? $old['name'] : false ?></h4>
     <?php getMsg($msg, $msg_type) ?>
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
         <div class="row">
             <div class="col-6">
                 <div class="form-group">
                     <label for="">Tên sách</label>
                     <input type="text" class="form-control" placeholder="Tên sách..." name="name" value="<?php echo oldData('name', $old) ?>">
                     <p class="error"><?php echo errorData('name', $errors) ?></p>
-                </div>
-
-                <div class="form-group">
-                    <label for="">Mô tả</label>
-                    <textarea class="form-control" rows="5" placeholder="Mô tả..." name="description"><?php echo oldData('description', $old) ?></textarea>
-                    <p class="error"><?php echo errorData('description', $errors) ?></p>
                 </div>
 
                 <div class="form-group">
@@ -63,22 +57,40 @@ if (empty($old) && !empty($data['book_detail'])) {
                 </div>
 
                 <div class="form-group">
-                    <label for="">Nội dung</label>
-                    <textarea class="form-control" rows="5" placeholder="Nội dung..." name="content"><?php echo oldData('content', $old) ?></textarea>
-                    <p class="error"><?php echo errorData('content', $errors) ?></p>
-                </div>
-
-                <div class="form-group">
                     <label for="">Giá</label>
                     <input type="text" class="form-control" name="price" placeholder="Giá sách..." value="<?php echo oldData('price', $old) ?>">
                     <p class="error"><?php echo errorData('price', $errors) ?></p>
                 </div>
+            </div>
 
+            <div class="col-12">
                 <div class="form-group">
-                    <label for="">Ảnh Minh Họa</label>
+                    <label for="">Mô tả</label>
+                    <textarea class="form-control" rows="5" placeholder="Mô tả..." name="description"><?php echo oldData('description', $old) ?></textarea>
+                    <p class="error"><?php echo errorData('description', $errors) ?></p>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="">Nội dung</label>
+                    <textarea class="form-control editor" rows="5" placeholder="Nội dung..." name="content"><?php echo oldData('content', $old) ?></textarea>
+                    <p class="error"><?php echo errorData('content', $errors) ?></p>
+                </div>
+            </div>
+
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="">Ảnh Minh Họa (không chọn nếu không đổi)</label>
                     <input type="file" class="form-control" name="thumbnail">
                     <p class="error"><?php echo errorData('thumbnail', $errors) ?></p>
                 </div>
+            </div>
+
+            <div class="col-6">
+                <label for="">Ảnh demo</label>
+                <?php $thumbnail = $data['book_detail']['thumbnail'] ?>
+                <img src="<?php echo _WEB_HOST_ROOT . '/uploads/' . $thumbnail ?>" width="100%">
             </div>
         </div>
         <input type="hidden" name="id" value="<?php echo !empty($data['id']) ? $data['id'] : 1 ?>">

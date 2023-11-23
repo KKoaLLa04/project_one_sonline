@@ -1,3 +1,8 @@
+<?php
+if (isLoginStudent()) {
+    $studentDetail = isLoginStudent();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,25 +42,38 @@
 
             <div class="col-1">
                 <div class="header__cart">
-                    <i class="fa fa-shopping-cart"></i>
+                    <a href="?module=cart&action=lists" style="color: black;"><i class="fa fa-shopping-cart"></i></a>
                 </div>
             </div>
 
             <div class="col-3">
                 <?php if (empty($_SESSION["loginStudent"]) && empty($_SESSION['loginTeacher'])) : ?>
-                <div class="header__button">
-                    <a href="?module=member&action=login"><button class="header__login">Đăng nhập</button></a>
-                    <a href="?module=member&action=register"><button class="header__register">Đăng ký</button></a>
-                </div>
+                    <div class="header__button">
+                        <a href="?module=member&action=login"><button class="header__login">Đăng nhập</button></a>
+                        <a href="?module=member&action=register"><button class="header__register">Đăng ký</button></a>
+                    </div>
                 <?php elseif (!empty($_SESSION['loginTeacher'])) : ?>
-                <p class="d-flex justify-content-end"><a href="<?php echo _WEB_HOST_ROOT_ADMIN ?>" target="_blank"
-                        class="mx-3"><button class="btn btn-primary btn-sm">Trang quản trị</button></a> <a
-                        href="?module=member&action=logout"><button class="btn btn-warning btn-sm">Đăng
-                            xuất</button></a></p>
+                    <p class="d-flex justify-content-end"><a href="<?php echo _WEB_HOST_ROOT_ADMIN ?>" target="_blank" class="mx-3"><button class="btn btn-primary btn-sm">Trang quản trị</button></a> <a href="?module=member&action=logout"><button class="btn btn-warning btn-sm">Đăng
+                                xuất</button></a></p>
                 <?php else :  ?>
-                <p class="d-flex justify-content-end"><a href="?module=member&action=logout"><button
+                    <!-- <p class="d-flex justify-content-end"><a href="?module=member&action=logout"><button
                             class="btn btn-warning btn-sm">Đăng
-                            xuất</button></a></p>
+                            xuất</button></a></p> -->
+                    <div class="dropdown d-flex justify-content-end">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: black;">
+                            Hi, xin chào
+                            <?php echo !empty($studentDetail['fullname']) ? $studentDetail['fullname'] : 'bạn' ?> <i class="fa fa-user"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="px-3"><i class="fa fa-angle-double-right"></i> <a href="?module=account&action=profile" style="text-decoration: none;">Cập nhật thông
+                                    tin</a>
+                            </li>
+                            <li class="px-3 pt-3"><i class="fa fa-angle-double-right"></i> <a href="?module=account&action=change_password" style="text-decoration: none;">Đổi mật
+                                    khẩu</a></li>
+                            <hr>
+                            <li class="px-3"><i class="fa fa-angle-double-right"></i> <a href="?module=member&action=logout" style="text-decoration: none;">Đăng xuất</a></li>
+                        </ul>
+                    </div>
                 <?php endif ?>
             </div>
         </div>

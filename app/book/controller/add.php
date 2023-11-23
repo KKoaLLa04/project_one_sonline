@@ -43,14 +43,24 @@ if (isPost()) {
         }
     }
 
+    if (empty($_FILES['thumbnail']['name'])) {
+        $errors['thumbnail'] = 'Bắt buộc thêm ảnh minh họa';
+    }
+
     if (empty($errors)) {
+
+        $fileName = $_FILES['thumbnail']['name'];
+        $from = $_FILES['thumbnail']['tmp_name'];
+        $to = _WEB_PATH_ROOT . '/uploads/' . $fileName;
+        move_uploaded_file($from, $to);
+        $thumbnail = trim($fileName);
 
         $dataInsert = [
             'name' => trim($body['name']),
             'author' => trim($body['author']),
             'description' => trim($body['description']),
             'content' => trim($body['content']),
-            'thumbnail' => trim($body['thumbnail']),
+            'thumbnail' => trim($thumbnail),
             'price' => trim($body['price']),
             'status' => trim($body['status']),
             'book_id' => trim($body['book_id']),

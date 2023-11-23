@@ -14,9 +14,12 @@
     <?php
                     if ($value['book_id'] == $item['id']) : ?>
     <div class="textbook__content">
-        <img src="<?php echo _WEB_HOST_TEMPLATE ?>/images/book1.png" alt="">
+        <a href="?module=book&action=detail&id=<?= $value['id'] ?>"><img
+                src="<?php echo _WEB_HOST_ROOT . '/uploads/' . $value['thumbnail'] ?>" alt="" width="100%"></a>
         <div class="course__padding">
-            <p><b><?php echo $value['name'] ?></b></p>
+            <a href="?module=book&action=detail&id=<?= $value['id'] ?>">
+                <p><b><?php echo $value['name'] ?></b></p>
+            </a>
             <div class="textbook__item">
                 <p>Giá bán:</p>
                 <b><?php echo $value['price'] ?> đ</b>

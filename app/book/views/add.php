@@ -9,32 +9,22 @@ $old = getFlashData('old');
     <hr>
     <h4>Thêm sách mới</h4>
     <?php getMsg($msg, $msg_type) ?>
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
         <div class="row">
             <div class="col-6">
                 <div class="form-group">
                     <label for="">Tên sách</label>
-                    <input type="text" class="form-control" placeholder="Tên sách..." name="name"
-                        value="<?php echo oldData('name', $old) ?>">
+                    <input type="text" class="form-control" placeholder="Tên sách..." name="name" value="<?php echo oldData('name', $old) ?>">
                     <p class="error"><?php echo errorData('name', $errors) ?></p>
-                </div>
-
-                <div class="form-group">
-                    <label for="">Mô tả</label>
-                    <textarea class="form-control" rows="5" placeholder="Mô tả..."
-                        name="description"><?php echo oldData('description', $old) ?></textarea>
-                    <p class="error"><?php echo errorData('description', $errors) ?></p>
                 </div>
 
                 <div class="form-group">
                     <label for="">Tình trạng</label>
                     <select class="form-control" name="status">
-                        <option value="0"
-                            <?php echo (!empty($old['status']) && $old['status'] == 0) ? 'selected' : 'false' ?>>Hết
+                        <option value="0" <?php echo (!empty($old['status']) && $old['status'] == 0) ? 'selected' : 'false' ?>>Hết
                             hàng
                         </option>
-                        <option value="1"
-                            <?php echo (!empty($old['status']) && $old['status'] == 1) ? 'selected' : 'false' ?>>Còn
+                        <option value="1" <?php echo (!empty($old['status']) && $old['status'] == 1) ? 'selected' : 'false' ?>>Còn
                             hàng
                         </option>
                     </select>
@@ -45,10 +35,11 @@ $old = getFlashData('old');
                     <label for="">Danh mục sách</label>
                     <select class="form-control" name="book_id">
                         <option value="0">Chọn danh mục sách </option>
-                        <?php if(!empty($data['book_category'])):
-                            foreach($data['book_category'] as $item): ?>
-                        <option value="<?php echo $item['id'] ?>"><?php echo $item['title'] ?></option>
-                        <?php endforeach; endif; ?>
+                        <?php if (!empty($data['book_category'])) :
+                            foreach ($data['book_category'] as $item) : ?>
+                                <option value="<?php echo $item['id'] ?>"><?php echo $item['title'] ?></option>
+                        <?php endforeach;
+                        endif; ?>
                     </select>
                     <p class="error"><?php echo errorData('book_id', $errors) ?></p>
                 </div>
@@ -57,22 +48,13 @@ $old = getFlashData('old');
             <div class="col-6">
                 <div class="form-group">
                     <label for="">Tác giả</label>
-                    <input type="text" class="form-control" placeholder="Tên tác giả..." name="author"
-                        value="<?php echo oldData('author', $old) ?>">
+                    <input type="text" class="form-control" placeholder="Tên tác giả..." name="author" value="<?php echo oldData('author', $old) ?>">
                     <p class="error"><?php echo errorData('author', $errors) ?></p>
                 </div>
 
                 <div class="form-group">
-                    <label for="">Nội dung</label>
-                    <textarea class="form-control" rows="5" placeholder="Nội dung..."
-                        name="content"><?php echo oldData('content', $old) ?></textarea>
-                    <p class="error"><?php echo errorData('content', $errors) ?></p>
-                </div>
-
-                <div class="form-group">
                     <label for="">Giá</label>
-                    <input type="text" class="form-control" name="price" placeholder="Giá sách..."
-                        value="<?php echo oldData('price', $old) ?>">
+                    <input type="text" class="form-control" name="price" placeholder="Giá sách..." value="<?php echo oldData('price', $old) ?>">
                     <p class="error"><?php echo errorData('price', $errors) ?></p>
                 </div>
 
@@ -80,6 +62,22 @@ $old = getFlashData('old');
                     <label for="">Ảnh Minh Họa</label>
                     <input type="file" class="form-control" name="thumbnail">
                     <p class="error"><?php echo errorData('thumbnail', $errors) ?></p>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="">Mô tả</label>
+                    <textarea class="form-control" rows="5" placeholder="Mô tả..." name="description"><?php echo oldData('description', $old) ?></textarea>
+                    <p class="error"><?php echo errorData('description', $errors) ?></p>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="">Nội dung</label>
+                    <textarea class="form-control editor" rows="5" placeholder="Nội dung..." name="content"><?php echo oldData('content', $old) ?></textarea>
+                    <p class="error"><?php echo errorData('content', $errors) ?></p>
                 </div>
             </div>
         </div>

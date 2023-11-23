@@ -51,17 +51,36 @@ if (isPost()) {
 
     if (empty($errors)) {
 
-        $dataUpdate = [
-            'name' => trim($body['name']),
-            'author' => trim($body['author']),
-            'description' => trim($body['description']),
-            'content' => trim($body['content']),
-            'thumbnail' => trim($body['thumbnail']),
-            'price' => trim($body['price']),
-            'status' => trim($body['status']),
-            'book_id' => trim($body['book_id']),
-            'update_at' => date('Y-m-d H:i:s')
-        ];
+        $fileName = $_FILES['thumbnail']['name'];
+        $from = $_FILES['thumbnail']['tmp_name'];
+        $to = _WEB_PATH_ROOT . '/uploads/' . $fileName;
+        move_uploaded_file($from, $to);
+        $thumbnail = trim($fileName);
+
+        if (!empty($thumbnail)) {
+            $dataUpdate = [
+                'name' => trim($body['name']),
+                'author' => trim($body['author']),
+                'description' => trim($body['description']),
+                'content' => trim($body['content']),
+                'thumbnail' => trim($thumbnail),
+                'price' => trim($body['price']),
+                'status' => trim($body['status']),
+                'book_id' => trim($body['book_id']),
+                'update_at' => date('Y-m-d H:i:s')
+            ];
+        } else {
+            $dataUpdate = [
+                'name' => trim($body['name']),
+                'author' => trim($body['author']),
+                'description' => trim($body['description']),
+                'content' => trim($body['content']),
+                'price' => trim($body['price']),
+                'status' => trim($body['status']),
+                'book_id' => trim($body['book_id']),
+                'update_at' => date('Y-m-d H:i:s')
+            ];
+        }
 
         $condition = "id=$id";
 
